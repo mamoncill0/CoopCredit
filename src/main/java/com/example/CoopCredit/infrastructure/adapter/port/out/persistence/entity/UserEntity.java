@@ -97,7 +97,7 @@ public class UserEntity implements UserDetails { // Define la entidad de usuario
     @Override // Sobrescribe el método getAuthorities para obtener los roles como GrantedAuthority.
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream() // Convierte el conjunto de RoleEntity a un stream.
-                .map(role -> new SimpleGrantedAuthority(role.getName().name())) // Mapea cada RoleEntity a un SimpleGrantedAuthority usando el nombre del enum Role.
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().name())) // CORRECCIÓN: Añade el prefijo "ROLE_" al nombre del rol.
                 .collect(Collectors.toList()); // Recolecta las autoridades en una lista.
     }
 

@@ -10,6 +10,7 @@ import com.example.CoopCredit.infrastructure.adapter.port.out.persistence.reposi
 import org.springframework.beans.factory.annotation.Autowired; // Importa @Autowired para inyección de dependencias.
 import org.springframework.stereotype.Component; // Importa @Component para que Spring detecte esta clase como un bean.
 
+import java.util.HashSet; // Importa HashSet.
 import java.util.Optional; // Importa Optional para manejar resultados que pueden ser nulos.
 import java.util.Set; // Importa Set para colecciones de roles.
 import java.util.stream.Collectors; // Importa Collectors para operaciones de stream.
@@ -32,7 +33,7 @@ public class UserPersistenceAdapter implements UserRepositoryPort { // Implement
         user.setId(userEntity.getId()); // Establece el ID.
         Set<Role> roles = userEntity.getRoles().stream() // Convierte el Set de RoleEntity a Set de Role (enum).
                 .map(RoleEntity::getName) // Mapea cada RoleEntity a su enum Role.
-                .collect(Collectors.toSet()); // Recolecta en un Set.
+                .collect(Collectors.toCollection(HashSet::new)); // CORRECCIÓN: Recolecta en un HashSet mutable.
         user.setRoles(roles); // Establece los roles en el objeto User.
         return user; // Retorna el objeto User del dominio.
     }
@@ -44,7 +45,7 @@ public class UserPersistenceAdapter implements UserRepositoryPort { // Implement
         Set<RoleEntity> roleEntities = user.getRoles().stream() // Convierte el Set de Role (enum) a Set de RoleEntity.
                 .map(roleEnum -> roleJpaRepository.findByName(roleEnum) // Busca la RoleEntity existente por su nombre.
                         .orElseThrow(() -> new RuntimeException("Error: Role " + roleEnum + " not found in database."))) // Lanza excepción si el rol no existe.
-                .collect(Collectors.toSet()); // Recolecta en un Set.
+                .collect(Collectors.toCollection(HashSet::new)); // CORRECCIÓN: Recolecta en un HashSet mutable.
         userEntity.setRoles(roleEntities); // Establece los roles en el objeto UserEntity.
         return userEntity; // Retorna el objeto UserEntity de persistencia.
     }

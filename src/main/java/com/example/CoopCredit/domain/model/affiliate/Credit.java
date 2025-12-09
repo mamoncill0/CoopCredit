@@ -1,6 +1,5 @@
 package com.example.CoopCredit.domain.model.affiliate;
 
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -23,7 +22,7 @@ public class Credit {
             throw new IllegalStateException("El afiliado debe estar ACTIVO para solicitar un crédito.");
         }
 
-        this.affiliateDocument = affiliateDocument;
+        this.affiliateDocument = affiliate; // CORRECCIÓN: Asigna el parámetro 'affiliate'
         this.amount = amount;
         this.term = term;
         this.proposedRate = proposedRate;

@@ -36,8 +36,8 @@ public class SecurityConfig { // Clase de configuración principal para Spring S
 
     @Bean // Declara un bean para el proveedor de autenticación.
     public DaoAuthenticationProvider authenticationProvider() {
-        // Instancia DaoAuthenticationProvider pasando userDetailsService en el constructor.
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(); // Instancia sin argumentos.
+        authProvider.setUserDetailsService(userDetailsService); // Establece el servicio de detalles de usuario.
         authProvider.setPasswordEncoder(passwordEncoder()); // Establece el codificador de contraseñas.
         return authProvider; // Retorna el proveedor configurado.
     }

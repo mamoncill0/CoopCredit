@@ -93,7 +93,7 @@ public class AuthService { // Clase de servicio para la lógica de autenticació
             strRoles.forEach(roleName -> { // Itera sobre los roles especificados.
                 Role roleEnum;
                 try {
-                    // CORRECCIÓN: Convierte el nombre del rol a mayúsculas sin añadir el prefijo "ROLE_".
+                    // Convierte el nombre del rol a mayúsculas sin añadir el prefijo "ROLE_".
                     roleEnum = Role.valueOf(roleName.toUpperCase());
                 } catch (IllegalArgumentException e) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error: Invalid role specified: " + roleName);

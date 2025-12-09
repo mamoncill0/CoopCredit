@@ -35,6 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // Filtro pa
     private static final List<String> EXCLUDE_URLS = Arrays.asList(
             "/auth/**", // Rutas de autenticación
             "/risk-evaluation/**", // Rutas del microservicio de evaluación de riesgo
+            // "/affiliates/**", // ELIMINADO: Las rutas de afiliados ahora requieren autenticación JWT
             "/v3/api-docs/**", // Rutas de OpenAPI
             "/swagger-ui/**", // Rutas de Swagger UI
             "/swagger-ui.html" // Página principal de Swagger UI
