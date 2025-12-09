@@ -112,6 +112,7 @@ public class CreditService { // Clase de servicio para la lógica de negocio de 
             credit.reject();
             // Crear una nueva instancia de RiskEvaluation con la razón actualizada.
             RiskEvaluation updatedRiskEvaluation = new RiskEvaluation(
+                    savedRiskEvaluation.getId(), // Usar el ID de la evaluación guardada.
                     savedRiskEvaluation.getScore(),
                     savedRiskEvaluation.getRiskLevel(),
                     "Rejected due to HIGH risk level and internal policies."
@@ -121,6 +122,7 @@ public class CreditService { // Clase de servicio para la lógica de negocio de 
             credit.approve();
             // Crear una nueva instancia de RiskEvaluation con la razón actualizada.
             RiskEvaluation updatedRiskEvaluation = new RiskEvaluation(
+                    savedRiskEvaluation.getId(), // Usar el ID de la evaluación guardada.
                     savedRiskEvaluation.getScore(),
                     savedRiskEvaluation.getRiskLevel(),
                     "Approved based on risk evaluation and internal policies."
@@ -183,6 +185,7 @@ public class CreditService { // Clase de servicio para la lógica de negocio de 
 
         // Crear una nueva instancia de RiskEvaluation con la razón actualizada.
         RiskEvaluation riskEvaluation = new RiskEvaluation(
+                credit.getAssociatedEvaluation().getId(), // Usar el ID de la evaluación existente.
                 credit.getAssociatedEvaluation().getScore(),
                 credit.getAssociatedEvaluation().getRiskLevel(),
                 decisionReason != null ? decisionReason : "Approved by analyst/admin."
@@ -203,6 +206,7 @@ public class CreditService { // Clase de servicio para la lógica de negocio de 
 
         // Crear una nueva instancia de RiskEvaluation con la razón actualizada.
         RiskEvaluation riskEvaluation = new RiskEvaluation(
+                credit.getAssociatedEvaluation().getId(), // Usar el ID de la evaluación existente.
                 credit.getAssociatedEvaluation().getScore(),
                 credit.getAssociatedEvaluation().getRiskLevel(),
                 decisionReason != null ? decisionReason : "Rejected by analyst/admin."

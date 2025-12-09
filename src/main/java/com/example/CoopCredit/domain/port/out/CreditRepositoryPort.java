@@ -10,6 +10,6 @@ public interface CreditRepositoryPort { // Define la interfaz del puerto para la
     Credit save(Credit credit); // Método para guardar una solicitud de crédito.
     Optional<Credit> findById(Long id); // Método para buscar una solicitud de crédito por su ID.
     List<Credit> findAll(); // Método para obtener todas las solicitudes de crédito.
-    List<Credit> findByAffiliateDocument(Long affiliateDocument); // Método para buscar solicitudes por documento de afiliado.
+    List<Credit> findByAffiliateDocument(Long affiliateDocument); // CORRECCIÓN: Método para buscar solicitudes por documento de afiliado (Long).
     // Podríamos añadir métodos para buscar por estado, etc.
 }

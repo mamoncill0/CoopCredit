@@ -18,13 +18,17 @@ public class RiskEvaluationPersistenceAdapter implements RiskEvaluationRepositor
     }
 
     // Convierte un objeto RiskEvaluationEntity (persistencia) a un objeto RiskEvaluation (dominio).
-    public RiskEvaluation toDomainRiskEvaluation(RiskEvaluationEntity entity) { // CORRECCIÓN: Visibilidad cambiada a public.
-        return new RiskEvaluation(entity.getScore(), entity.getRiskLevel(), entity.getDecisionReason()); // Crea y retorna un RiskEvaluation del dominio.
+    public RiskEvaluation toDomainRiskEvaluation(RiskEvaluationEntity entity) { // Visibilidad cambiada a public.
+        // CORRECCIÓN: Crear RiskEvaluation del dominio con el ID de la entidad.
+        return new RiskEvaluation(entity.getId(), entity.getScore(), entity.getRiskLevel(), entity.getDecisionReason()); // Crea y retorna un RiskEvaluation del dominio.
     }
 
     // Convierte un objeto RiskEvaluation (dominio) a un objeto RiskEvaluationEntity (persistencia).
-    public RiskEvaluationEntity toPersistenceRiskEvaluationEntity(RiskEvaluation domain) { // CORRECCIÓN: Visibilidad cambiada a public.
-        return new RiskEvaluationEntity(domain.getScore(), domain.getRiskLevel(), domain.getDecisionReason()); // Crea y retorna un RiskEvaluationEntity de persistencia.
+    public RiskEvaluationEntity toPersistenceRiskEvaluationEntity(RiskEvaluation domain) { // Visibilidad cambiada a public.
+        // CORRECCIÓN: Crear RiskEvaluationEntity de persistencia.
+        RiskEvaluationEntity entity = new RiskEvaluationEntity(domain.getScore(), domain.getRiskLevel(), domain.getDecisionReason());
+        entity.setId(domain.getId()); // Asigna el ID del dominio a la entidad.
+        return entity; // Crea y retorna un RiskEvaluationEntity de persistencia.
     }
 
     @Override // Implementación del método save del puerto.
